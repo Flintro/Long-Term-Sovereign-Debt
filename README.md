@@ -3,3 +3,5 @@ This code is heavily based on the Julia QuantEcon lecture ``Default Risk and Inc
 I extend that code to solve an economy with long term debt, similar to Chatterjee and Eyigungor (2012).
 
 In the other code file I also allow for some inflation. You can see how default sets move even when there is (anticipated) inflation.
+
+I also have code which solves this economy via the projection method, which I am happy to provide if someone reaches out.
