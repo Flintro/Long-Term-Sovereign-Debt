@@ -19,7 +19,7 @@ function ArellanoEconomy(; beta = 0.953,
     Pi = mc.p
     ygrid = exp.(mc.state_values)
     ydefgrid = min.(0.969 * mean(ygrid), ygrid)
-    infl_grid = LinRange(1.0, 1, ny) # exogenous inflation grid DECREASES with the state.
+    infl_grid = LinRange(1.2, 1, ny) # exogenous inflation grid DECREASES with the state.
     # infl_grid = LinRange(1, 1.2, ny) # inflation increases with the state
 
     Pi_m = (1/nm) .* ones(nm, nm)
@@ -111,7 +111,7 @@ function compute_prices!(ae)
         infl_mat = infl_grid .* ones(1, nB) # ny x nB matrix
         infl_mat = infl_mat' # nB x ny matrix
         
-        q_temp[:,:,im] .= ( infl_mat .* (1 .- default_states[:,:,im])  ## Double check that my infl_mat elementwise multiplication makes sense
+        q_temp[:,:,im] .= ( (1 ./ infl_mat) .* (1 .- default_states[:,:,im])  ## Double check that my infl_mat elementwise multiplication makes sense
         .* (lambda .+ (1 .- lambda) .* (z .+ q_new_d) ) * ae.Pi' )     ## as an extension of equation (6) in Chatterjee and Eyigungor (2012)
     end
 
